@@ -5,13 +5,16 @@ module.exports = {
     'plugin:prettier/recommended'
   ],
   plugins: [
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'simple-import-sort'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true
-    }
+    },
+    sourceType: 'module',
+    ecmaVersion: 'latest'
   },
   rules: {
     'prettier/prettier': ['error', {
@@ -27,6 +30,8 @@ module.exports = {
         arrowParens: 'avoid',
         endOfLine: 'lf'
       }
-    ]
+    ],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error'
   }
 }

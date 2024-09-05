@@ -1,6 +1,6 @@
 {
   "name": "@cmhpedro/eslint-config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ESLint configuration used by Pedro Mariano.",
   "author": "Pedro Mariano",
   "license": "MIT",
@@ -37,6 +37,7 @@
     "eslint-plugin-promise": "^6.2.0",
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "prettier": "^3.3.1"
   }
 }
