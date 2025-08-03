@@ -1,37 +1,57 @@
-module.exports = {
-  extends: [
-    'standard',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended'
-  ],
-  plugins: [
-    '@typescript-eslint',
-    'simple-import-sort'
-  ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
+import js from '@eslint/js'
+import tsEslint from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
+import prettier from 'eslint-plugin-prettier'
+import prettierConfig from 'eslint-config-prettier'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
+
+export default [
+  // Base JS recommended rules
+  js.configs.recommended,
+
+  // Prettier config to disable conflicting rules
+  prettierConfig,
+
+  // Main configuration
+  {
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        },
+        sourceType: 'module',
+        ecmaVersion: 'latest',
+      }
     },
-    sourceType: 'module',
-    ecmaVersion: 'latest'
-  },
-  rules: {
-    'prettier/prettier': ['error', {
+    plugins: {
+      '@typescript-eslint': tsEslint,
+      'prettier': prettier,
+      'simple-import-sort': simpleImportSort,
+    },
+    rules: {
+      // TypeScript recommended rules
+      ...tsEslint.configs.recommended.rules,
+
+      // Prettier rules
+      'prettier/prettier': ['error', {
         printWidth: 80,
         tabWidth: 2,
         useTabs: false,
         semi: false,
         singleQuote: true,
         quoteProps: 'consistent',
-        trailingComma: 'none',
+        trailingComma: 'all',
         bracketSpacing: true,
         bracketSameLine: false,
         arrowParens: 'avoid',
-        endOfLine: 'lf'
-      }
+        endOfLine: 'lf',
+      },
     ],
-    'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error'
-  }
-}
+
+      // Import sorting rules
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+    },
+  },
+]

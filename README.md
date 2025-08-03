@@ -2,7 +2,6 @@
 
 ## What's included?
 
-- Standard ESLint config
 - Prettier
 - Simple import sort
 
@@ -14,27 +13,15 @@ pnpm i -D @cmhpedro/eslint-config
 
 ## Setup
 
-### React (with Next.js)
+### React
 
-`.eslintrc.json`:
+`eslint.config.js`:
 
-```json
-{
-  "extends": [
-    "@cmhpedro/eslint-config", 
-    "next/core-web-vitals"
-  ]
-}
-```
+```js
+import cmhpedroConfig from '@cmhpedro/eslint-config'
 
-### React (without Next.js)
-
-`.eslintrc.json`:
-
-```json
-{
-  "extends": [
-    "@cmhpedro/eslint-config/react"
-  ]
-}
+export default tseslint.config([
+  // ...other configs
+  cmhpedroConfig,
+])
 ```
